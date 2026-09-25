@@ -1,0 +1,36 @@
+tests/fixtures/x86-64-v3
+
+Binary
+  Format: ELF64
+  Architecture: x86_64
+  Endianness: Little
+  Type: executable (non-PIE)
+  Linking: static
+  e_machine: 62
+  e_type: 2
+  OS ABI: 0
+  ABI version: 0
+
+Runtime
+  Interpreter: not declared
+  libc: Unknown
+  glibc requirement: N/A (static)
+
+Dependencies
+  None declared
+
+CPU
+  ISA requirement: x86-64-v3
+
+Compatibility (declared ABI checks)
+  Debian 12: INCOMPATIBLE
+    architecture: COMPATIBLE
+      x86_64 edition is supported
+    dynamic_loader: COMPATIBLE
+      Not applicable: statically linked.
+    glibc: COMPATIBLE
+      Not applicable: no dynamic libc requirement (embedded libc is unknown).
+    cpu_isa: INCOMPATIBLE
+      declared requirement x86-64-v3; target CPU x86-64-v2
+
+Scope: declared ABI requirements only. Dependencies, non-glibc runtimes, kernel requirements and undeclared CPU instructions are not checked.

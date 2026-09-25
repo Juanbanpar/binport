@@ -1,0 +1,4 @@
+GLIBC_2.2.5 { global: malloc; free; };
+GLIBC_2.17 { global: clock_gettime; } GLIBC_2.2.5;
+GLIBC_2.34 { global: pthread_create; } GLIBC_2.17;
+GLIBC_2.39 { global: pidfd_spawnp; pidfd_spawn; } GLIBC_2.34;

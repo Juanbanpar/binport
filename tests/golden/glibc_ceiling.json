@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "binary": {
+    "file": "tests/fixtures/glibc-new",
+    "format": "elf",
+    "binary_type": "pie_executable",
+    "architecture": "x86_64",
+    "bits": 64,
+    "endian": "little",
+    "machine": 62,
+    "elf_type": 3,
+    "os_abi": 0,
+    "abi_version": 0,
+    "interpreter": "/lib64/ld-linux-x86-64.so.2",
+    "linking": "dynamic",
+    "needed_libraries": [
+      "libc.so.6"
+    ],
+    "soname": null,
+    "rpath": [],
+    "runpath": [],
+    "libc": {
+      "family": "glibc",
+      "evidence": [
+        "interpreter /lib64/ld-linux-x86-64.so.2",
+        "DT_NEEDED libc.so.6",
+        "GLIBC version requirements from glibc-provided objects"
+      ]
+    },
+    "version_requirements": [
+      {
+        "library": "libc.so.6",
+        "version": "GLIBC_2.17",
+        "symbols": [
+          "clock_gettime"
+        ],
+        "weak": false
+      },
+      {
+        "library": "libc.so.6",
+        "version": "GLIBC_2.2.5",
+        "symbols": [
+          "free",
+          "malloc"
+        ],
+        "weak": false
+      },
+      {
+        "library": "libc.so.6",
+        "version": "GLIBC_2.34",
+        "symbols": [
+          "pthread_create"
+        ],
+        "weak": false
+      },
+      {
+        "library": "libc.so.6",
+        "version": "GLIBC_2.39",
+        "symbols": [
+          "pidfd_spawn",
+          "pidfd_spawnp"
+        ],
+        "weak": false
+      }
+    ],
+    "version_requirements_complete": true,
+    "glibc_requirement": {
+      "minimum": "2.39",
+      "causing_symbols": [
+        "pidfd_spawn",
+        "pidfd_spawnp"
+      ]
+    },
+    "cpu_requirement": {
+      "x86_64_isa": null,
+      "unknown_isa_bits": 0
+    },
+    "warnings": [
+      {
+        "code": "undeclared_cpu_isa",
+        "message": "No GNU ISA requirement was declared. This does NOT imply x86-64-v1 compatibility."
+      }
+    ]
+  },
+  "compatibility": [
+    {
+      "target": "glibc-2.31",
+      "name": "glibc maximum 2.31",
+      "status": "incompatible",
+      "constraints": [
+        {
+          "constraint": "glibc",
+          "status": "incompatible",
+          "required": true,
+          "reason": "available glibc 2.31 < required 2.39; allowed maximum: GLIBC_2.31",
+          "causing_symbols": [
+            "pidfd_spawn@GLIBC_2.39",
+            "pidfd_spawnp@GLIBC_2.39"
+          ]
+        }
+      ]
+    }
+  ]
+}

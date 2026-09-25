@@ -1,0 +1,5 @@
+GLIBCXX_3.4.30 { global: cpp_api; };
+CXXABI_1.3 { global: cxx_api; };
+GCC_3.0 { global: gcc_api; };
+OPENSSL_3.0.0 { global: ssl_api; };
+GLIBC_9.99 { global: misleading; };

@@ -1,0 +1,32 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  rust:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - run: rustup toolchain install stable --profile minimal --component rustfmt --component clippy
+      - run: cargo +stable fmt --check
+      - run: cargo +stable clippy --locked --all-targets -- -D warnings
+      - run: cargo +stable test --locked
+  fuzz:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - run: rustup toolchain install nightly --profile minimal --component rust-src --component rustfmt --component clippy
+      - run: cargo +stable install cargo-fuzz --version 0.13.2 --locked
+      - run: cargo +nightly fmt --manifest-path fuzz/Cargo.toml --check
+      - run: cargo +nightly clippy --manifest-path fuzz/Cargo.toml --locked --all-targets -- -D warnings
+      - run: cargo +stable run --locked --example fixture-tools -- seed-corpus
+      - name: Fuzz parser and compatibility invariants
+        env:
+          CARGO_NET_OFFLINE: "true"
+        run: cargo +nightly fuzz run analyze_bytes -- -max_total_time=60 -timeout=5 -rss_limit_mb=512 -malloc_limit_mb=128 -max_len=1048576
+      - name: Preserve failing inputs
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: fuzz-failures
+          path: fuzz/artifacts/analyze_bytes/
+          if-no-files-found: ignore

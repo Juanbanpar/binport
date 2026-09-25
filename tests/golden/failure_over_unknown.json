@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "binary": {
+    "file": "tests/fixtures/weak-version",
+    "format": "elf",
+    "binary_type": "pie_executable",
+    "architecture": "x86_64",
+    "bits": 64,
+    "endian": "little",
+    "machine": 62,
+    "elf_type": 3,
+    "os_abi": 0,
+    "abi_version": 0,
+    "interpreter": "/lib64/ld-linux-x86-64.so.2",
+    "linking": "dynamic",
+    "needed_libraries": [
+      "libc.so.6"
+    ],
+    "soname": null,
+    "rpath": [],
+    "runpath": [],
+    "libc": {
+      "family": "glibc",
+      "evidence": [
+        "interpreter /lib64/ld-linux-x86-64.so.2",
+        "DT_NEEDED libc.so.6",
+        "GLIBC version requirements from glibc-provided objects"
+      ]
+    },
+    "version_requirements": [
+      {
+        "library": "libc.so.6",
+        "version": "GLIBC_2.17",
+        "symbols": [
+          "clock_gettime"
+        ],
+        "weak": false
+      },
+      {
+        "library": "libc.so.6",
+        "version": "GLIBC_2.39",
+        "symbols": [
+          "pidfd_spawnp"
+        ],
+        "weak": true
+      }
+    ],
+    "version_requirements_complete": true,
+    "glibc_requirement": {
+      "minimum": "2.17",
+      "causing_symbols": [
+        "clock_gettime"
+      ]
+    },
+    "cpu_requirement": {
+      "x86_64_isa": null,
+      "unknown_isa_bits": 0
+    },
+    "warnings": [
+      {
+        "code": "undeclared_cpu_isa",
+        "message": "No GNU ISA requirement was declared. This does NOT imply x86-64-v1 compatibility."
+      }
+    ]
+  },
+  "compatibility": [
+    {
+      "target": "debian-12",
+      "name": "Debian 12",
+      "status": "unknown",
+      "constraints": [
+        {
+          "constraint": "architecture",
+          "status": "compatible",
+          "required": true,
+          "reason": "x86_64 edition is supported",
+          "causing_symbols": []
+        },
+        {
+          "constraint": "dynamic_loader",
+          "status": "compatible",
+          "required": true,
+          "reason": "target baseline loader: /lib64/ld-linux-x86-64.so.2",
+          "causing_symbols": []
+        },
+        {
+          "constraint": "glibc",
+          "status": "unknown",
+          "required": true,
+          "reason": "Mandatory glibc floor does not exceed 2.36, but weak version requirements are not established on this target: GLIBC_2.39 from libc.so.6. Weak-symbol binding and fallback behavior are not evaluated.",
+          "causing_symbols": [
+            "pidfd_spawnp@GLIBC_2.39"
+          ]
+        },
+        {
+          "constraint": "cpu_isa",
+          "status": "unknown",
+          "required": false,
+          "reason": "No GNU ISA requirement was declared. This does NOT imply x86-64-v1 compatibility.",
+          "causing_symbols": []
+        }
+      ]
+    },
+    {
+      "target": "glibc-2.16",
+      "name": "glibc maximum 2.16",
+      "status": "incompatible",
+      "constraints": [
+        {
+          "constraint": "glibc",
+          "status": "incompatible",
+          "required": true,
+          "reason": "available glibc 2.16 < required 2.17; allowed maximum: GLIBC_2.16",
+          "causing_symbols": [
+            "clock_gettime@GLIBC_2.17"
+          ]
+        }
+      ]
+    }
+  ]
+}

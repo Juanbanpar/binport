@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "binary": {
+    "file": "tests/fixtures/x86-64-v3",
+    "format": "elf",
+    "binary_type": "executable",
+    "architecture": "x86_64",
+    "bits": 64,
+    "endian": "little",
+    "machine": 62,
+    "elf_type": 2,
+    "os_abi": 0,
+    "abi_version": 0,
+    "interpreter": null,
+    "linking": "static",
+    "needed_libraries": [],
+    "soname": null,
+    "rpath": [],
+    "runpath": [],
+    "libc": {
+      "family": "unknown",
+      "evidence": [
+        "Static or non-loadable artifact; embedded libc cannot be identified reliably from dynamic metadata."
+      ]
+    },
+    "version_requirements": [],
+    "version_requirements_complete": true,
+    "glibc_requirement": null,
+    "cpu_requirement": {
+      "x86_64_isa": "x86-64-v3",
+      "unknown_isa_bits": 0
+    },
+    "warnings": []
+  },
+  "compatibility": [
+    {
+      "target": "debian-12",
+      "name": "Debian 12",
+      "status": "incompatible",
+      "constraints": [
+        {
+          "constraint": "architecture",
+          "status": "compatible",
+          "required": true,
+          "reason": "x86_64 edition is supported",
+          "causing_symbols": []
+        },
+        {
+          "constraint": "dynamic_loader",
+          "status": "compatible",
+          "required": true,
+          "reason": "Not applicable: statically linked.",
+          "causing_symbols": []
+        },
+        {
+          "constraint": "glibc",
+          "status": "compatible",
+          "required": true,
+          "reason": "Not applicable: no dynamic libc requirement (embedded libc is unknown).",
+          "causing_symbols": []
+        },
+        {
+          "constraint": "cpu_isa",
+          "status": "incompatible",
+          "required": true,
+          "reason": "declared requirement x86-64-v3; target CPU x86-64-v2",
+          "causing_symbols": []
+        }
+      ]
+    }
+  ]
+}

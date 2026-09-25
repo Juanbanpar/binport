@@ -1,0 +1,50 @@
+tests/fixtures/weak-symbol-hard-version
+
+Binary
+  Format: ELF64
+  Architecture: x86_64
+  Endianness: Little
+  Type: PIE executable
+  Linking: dynamic
+  e_machine: 62
+  e_type: 3
+  OS ABI: 0
+  ABI version: 0
+
+Runtime
+  Interpreter: /lib64/ld-linux-x86-64.so.2
+  libc: Glibc
+  glibc >= 2.39
+
+glibc requirement
+  GLIBC_2.39
+  Introduced by:
+    pidfd_spawnp@GLIBC_2.39
+
+Dependencies
+  libc.so.6
+
+Imported symbol versions
+  libc.so.6: GLIBC_2.17
+    clock_gettime
+  libc.so.6: GLIBC_2.39
+    pidfd_spawnp
+
+CPU
+  ISA requirement: unknown
+
+Compatibility (declared ABI checks)
+  Debian 12: INCOMPATIBLE
+    architecture: COMPATIBLE
+      x86_64 edition is supported
+    dynamic_loader: COMPATIBLE
+      target baseline loader: /lib64/ld-linux-x86-64.so.2
+    glibc: INCOMPATIBLE
+      available glibc 2.36 < required 2.39; allowed maximum: GLIBC_2.36
+      pidfd_spawnp@GLIBC_2.39
+    cpu_isa: UNKNOWN
+      No GNU ISA requirement was declared. This does NOT imply x86-64-v1 compatibility.
+
+Warning [undeclared_cpu_isa]: No GNU ISA requirement was declared. This does NOT imply x86-64-v1 compatibility.
+
+Scope: declared ABI requirements only. Dependencies, non-glibc runtimes, kernel requirements and undeclared CPU instructions are not checked.

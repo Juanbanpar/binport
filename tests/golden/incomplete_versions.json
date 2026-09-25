@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "binary": {
+    "file": "tests/fixtures/sectionless",
+    "format": "elf",
+    "binary_type": "pie_executable",
+    "architecture": "x86_64",
+    "bits": 64,
+    "endian": "little",
+    "machine": 62,
+    "elf_type": 3,
+    "os_abi": 0,
+    "abi_version": 0,
+    "interpreter": "/lib64/ld-linux-x86-64.so.2",
+    "linking": "dynamic",
+    "needed_libraries": [
+      "libc.so.6"
+    ],
+    "soname": null,
+    "rpath": [],
+    "runpath": [],
+    "libc": {
+      "family": "glibc",
+      "evidence": [
+        "interpreter /lib64/ld-linux-x86-64.so.2",
+        "DT_NEEDED libc.so.6"
+      ]
+    },
+    "version_requirements": [],
+    "version_requirements_complete": false,
+    "glibc_requirement": null,
+    "cpu_requirement": {
+      "x86_64_isa": null,
+      "unknown_isa_bits": 0
+    },
+    "warnings": [
+      {
+        "code": "incomplete_symbol_versions",
+        "message": "Dynamic symbol/version sections are unavailable; the glibc floor and symbol causes may be incomplete."
+      },
+      {
+        "code": "undeclared_cpu_isa",
+        "message": "No GNU ISA requirement was declared. This does NOT imply x86-64-v1 compatibility."
+      }
+    ]
+  },
+  "compatibility": [
+    {
+      "target": "debian-13",
+      "name": "Debian 13",
+      "status": "unknown",
+      "constraints": [
+        {
+          "constraint": "architecture",
+          "status": "compatible",
+          "required": true,
+          "reason": "x86_64 edition is supported",
+          "causing_symbols": []
+        },
+        {
+          "constraint": "dynamic_loader",
+          "status": "compatible",
+          "required": true,
+          "reason": "target baseline loader: /lib64/ld-linux-x86-64.so.2",
+          "causing_symbols": []
+        },
+        {
+          "constraint": "glibc",
+          "status": "unknown",
+          "required": true,
+          "reason": "Symbol-version metadata is incomplete; cannot establish the glibc floor.",
+          "causing_symbols": []
+        },
+        {
+          "constraint": "cpu_isa",
+          "status": "unknown",
+          "required": false,
+          "reason": "No GNU ISA requirement was declared. This does NOT imply x86-64-v1 compatibility.",
+          "causing_symbols": []
+        }
+      ]
+    }
+  ]
+}

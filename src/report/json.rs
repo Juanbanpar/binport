@@ -1,0 +1,4 @@
+use crate::model::Inspection;
+pub fn render(report: &Inspection) -> Result<String, serde_json::Error> {
+    serde_json::to_string_pretty(report)
+}
