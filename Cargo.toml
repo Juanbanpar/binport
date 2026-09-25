@@ -3,7 +3,7 @@ name = "binport"
 version = "0.1.0"
 edition = "2024"
 description = "Explain Linux ELF deployment compatibility without executing artifacts"
-license = "MIT"
+license = "MIT OR Apache-2.0"
 
 [[example]]
 name = "fixture-tools"
